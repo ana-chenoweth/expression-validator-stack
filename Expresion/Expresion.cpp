@@ -19,9 +19,6 @@ Expresion::Expresion(std::string expInfija)
 void Expresion::Capturar() {
     std::cin >> expInfija;
     esValida = EsCadenaValida();
-    if (!esValida) {
-        throw "La expresión ingresada no es válida. Verifica los paréntesis o símbolos.";
-    }
     ConvertirPosfija();
 }
 
@@ -101,7 +98,7 @@ bool Expresion::EsCadenaValida()
     bool estamal = false;
 
     for(int i = 0; i<(int)expInfija.size(); i++){
-        if(EsOperadorBinario(cadena[i]) || cadena[i] == '.' || cadena[i] == 'E'|| EsNumero(cadena[i])) continue;
+        if(EsOperadorBinario(cadena[i]) || cadena[i] == '.' || cadena[i] == 'E'|| cadena[i] == 'e'|| EsNumero(cadena[i])) continue;
         else if(EsAbierto(cadena[i])|| EsCerrado(cadena[i])){
             if(EsAbierto(cadena[i])){
                 pila.Agregar(cadena[i]);
