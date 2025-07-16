@@ -3,6 +3,15 @@
 #include <math.h>
 #include <string>
 
+enum Operadores {
+    SUMA = 1,
+    RESTA = 1,
+    MULTIPLICACION = 2,
+    DIVISION = 2,
+    EXPONENTE = 3,
+    PARENTESIS_ABIERTO = 4
+};
+
 Expresion::Expresion(): expInfija(""), expPosfija(""), esValida(false)
 {
 

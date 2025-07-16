@@ -14,6 +14,7 @@ private:
     bool EsOperadorBinario(const char caracter);
     bool EsAbierto(const char caracter);
     bool EsCerrado(const char caracter);
+    bool EsPrecedente(const char caracter1, const char caracter2);
 
 };
 #endif // EXPRESION_HPP_INCLUDED
