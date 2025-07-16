@@ -16,12 +16,15 @@ Expresion::Expresion(std::string expInfija)
     ConvertirPosfija();
 }
 //*****************************************************************
-void Expresion::Capturar()
-{
+void Expresion::Capturar() {
     std::cin >> expInfija;
     esValida = EsCadenaValida();
+    if (!esValida) {
+        throw "La expresión ingresada no es válida. Verifica los paréntesis o símbolos.";
+    }
     ConvertirPosfija();
 }
+
 //*****************************************************************
 void Expresion::ImprimirInfija()
 {
@@ -74,7 +77,7 @@ double Expresion::EvaluarExpPosfija(){
                    case '^':
                        double c = y - static_cast<int>(y);
                         if (x < 0 && (fmod(c, 2.0) != 0)) {
-                            throw "No es posible realizar ra\241ces pares de n\243meros negativos";
+                            throw "No es posible realizar raíces pares de números negativos";
                         } else {
                             miPila.Agregar(pow(x, y));
                         }
@@ -103,24 +106,33 @@ bool Expresion::EsCadenaValida()
             if(EsAbierto(cadena[i])){
                 pila.Agregar(cadena[i]);
             }
-            if(cadena[i] == ')' ){
-                if(!pila.EstaVacia()){
-                    if(pila.ObtenerTope()=='(') pila.Eliminar();
-                    else estamal = true;
+            if(cadena[i] == ')') {
+                if(!pila.EstaVacia() && pila.ObtenerTope() == '(') {
+                    pila.Eliminar();
+                } else {
+                    esValida = false;
+                    return false;
                 }
             }
-            if(cadena[i] == '}'){
-                if(!pila.EstaVacia()){
-                    if(pila.ObtenerTope()=='{') pila.Eliminar();
-                    else estamal = true;
+
+            if(cadena[i] == '}') {
+                if(!pila.EstaVacia() && pila.ObtenerTope() == '{') {
+                    pila.Eliminar();
+                } else {
+                    esValida = false;
+                    return false;
                 }
             }
-            if(cadena[i] == ']'){
-                if(!pila.EstaVacia()){
-                    if(pila.ObtenerTope()=='[') pila.Eliminar();
-                    else estamal = true;
+
+            if(cadena[i] == ']') {
+                if(!pila.EstaVacia() && pila.ObtenerTope() == '[') {
+                    pila.Eliminar();
+                } else {
+                    esValida = false;
+                    return false;
                 }
             }
+
         }else{
             esValida = false;
             return false;
