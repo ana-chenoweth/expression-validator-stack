@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['agregar_0',['Agregar',['../class_pila.html#af1c20e3502dca14531008b9a895c3bb9',1,'Pila']]]
+  ['capturar_0',['Capturar',['../class_expresion.html#afa3ead27ea0c084c74199a28af2e17d9',1,'Expresion']]]
 ];
