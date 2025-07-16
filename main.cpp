@@ -1,233 +1,35 @@
 #include <iostream>
-#include <cctype>
-#include <string>
-#include <limits>
-#include "Pila/Pila.hpp"
-#include "Vector/Vector.hpp"
-
+#include "Expresion.hpp"
 using namespace std;
-
 
 int main()
 {
     try{
 
-        cout << "\n/******** PILA DE INT *********/\n";
-        Pila<int> miPila;
-        char respuesta;
-        int valor;
+    cout << "Clase Expresi\242n..." << endl;
+    Expresion exp("{[(5+7)*6+4]/[(2-3)/4]}^2");
+    double num = exp.EvaluarExpPosfija();
+    cout << "\nResultado de la expresi\242n: " << num << endl;
+    cout << "Expresion infija: ";
+    exp.ImprimirInfija();
+    cout << endl << "Expresion posfija: ";
+    exp.ImprimirPosfija();
 
-        do{
-            cout << "Valor a agregar: ";
-            cin >> valor;
-            while(cin.fail()){
-                cout << "Error, no es del tipo adecuado" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<int>::max(), '\n');
-                cout << "Valor a agregar: ";
-                cin >> valor;
-            }
-            miPila.Agregar(valor);
-            cout << "Elemento agregado. Ahora la pila tiene " << miPila.ObtenerTamano() << " elemento(s) y una capacidad de " << miPila.ObtenerCap() << "\n";
-            miPila.Imprimir();
-            cout << endl << endl;
-            do{
-                cout << "Quiere agregar otro elemento? (s/n): ";
-                cin >> respuesta;
-                respuesta = tolower(respuesta);
-            }while(respuesta != 's' && respuesta != 'n');
-        }while(respuesta == 's');
+    cout << endl << endl << "Tambi\202n puedes ingresar una expresi\242n: ";
+    Expresion exp2;
+    exp2.Capturar();
+    double num2 = exp2.EvaluarExpPosfija();
+    cout << "\nResultado de la expresi\242n: " << num2 << endl;
+    cout << "Expresion infija: ";
+    exp2.ImprimirInfija();
+    cout << endl << "Expresion posfija: ";
+    exp2.ImprimirPosfija();
+    cout << endl;
 
-
-        do{
-            cout << "Quiere vaciar la pila? (s/n): ";
-            cin >> respuesta;
-            respuesta = tolower(respuesta);
-        }while(respuesta != 's' && respuesta != 'n');
-
-        if(respuesta == 's') {
-                miPila.Vaciar();
-                cout << "Pila vaciada con exito.\n\n";
-        }
-
-        if(!miPila.EstaVacia()){
-        cout << "Eliminando elementos" << endl;
-        do{
-            cout << "Elemento a eliminar: " << miPila.ObtenerTope() << endl;
-            miPila.Eliminar();
-
-            cout << "\nElemento eliminado. Ahora la pila tiene " << miPila.ObtenerTamano() << " elemento(s) y una capacidad de " << miPila.ObtenerCap() << "\n";
-            miPila.Imprimir();
-            cout << endl << endl;
-            do{
-                cout << "Quiere eliminar otro elemento? (s/n): ";
-                cin >> respuesta;
-                respuesta = tolower(respuesta);
-            }while(respuesta != 's' && respuesta != 'n');
-        }while(respuesta == 's');
-        }
-
-        do{
-           cout << "Quiere hacer una copia de esta pila de int? ";
-            cin >> respuesta;
-            respuesta = tolower(respuesta);
-        }while(respuesta != 's' && respuesta != 'n');
-
-        if(respuesta == 's'){
-            Pila<int> miPila2;
-            cout << "Pila 1: \n";
-            miPila.Imprimir();
-            miPila2 = miPila;
-            cout << "\nPila 2: \n";
-            miPila2.Imprimir();
-        }
-
-     cout << "\n/******** PILAS DE DOUBLES ******/\n";
-
-        Pila<double> pilaDoubles;
-        char respuesta2;
-        double valor2;
-
-        do {
-            cout << "Valor a agregar: ";
-            cin >> valor2;
-            while (cin.fail()) {
-                cout << "Error, no es del tipo adecuado" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Valor a agregar: ";
-                cin >> valor2;
-            }
-            pilaDoubles.Agregar(valor2);
-            cout << "Elemento agregado. Ahora la pila tiene " << pilaDoubles.ObtenerTamano() << " elemento(s) y una capacidad de " << miPila.ObtenerCap() << "\n";
-            pilaDoubles.Imprimir();
-            cout << endl << endl;
-            do {
-                cout << "Quiere agregar otro elemento? (s/n): ";
-                cin >> respuesta2;
-                respuesta2 = tolower(respuesta2);
-            } while (respuesta2 != 's' && respuesta2 != 'n');
-        } while (respuesta2 == 's');
-
-        do{
-            cout << "Quiere vaciar la pila? (s/n): ";
-            cin >> respuesta2;
-            respuesta2 = tolower(respuesta2);
-        }while(respuesta2 != 's' && respuesta2 != 'n');
-
-        if(respuesta2 == 's') {
-                pilaDoubles.Vaciar();
-                cout << "Pila vaciada con exito.\n\n";
-        }
-
-        if(!pilaDoubles.EstaVacia()){
-
-                cout << "Eliminando elementos" << endl;
-        do{
-            cout << "Elemento a eliminar: " << pilaDoubles.ObtenerTope() << endl;
-            pilaDoubles.Eliminar();
-
-            cout << "\nElemento eliminado. Ahora la pila tiene " << pilaDoubles.ObtenerTamano() << " elemento(s)  y una capacidad de " << miPila.ObtenerCap() << "\n";
-            pilaDoubles.Imprimir();
-            cout << endl << endl;
-            do{
-                cout << "Quiere eliminar otro elemento? (s/n): ";
-                cin >> respuesta2;
-                respuesta2 = tolower(respuesta2);
-            }while(respuesta2 != 's' && respuesta2 != 'n');
-        }while(respuesta2 == 's');
-
-        }
-
-        do{
-           cout << "Quiere hacer una copia de esta pila de doubles? ";
-            cin >> respuesta2;
-            respuesta2 = tolower(respuesta2);
-        }while(respuesta2 != 's' && respuesta2 != 'n');
-
-        if(respuesta2 == 's'){
-            Pila<double> pilaDoubles2;
-            cout << "Pila 1: \n";
-            pilaDoubles.Imprimir();
-            pilaDoubles2 = pilaDoubles;
-            cout << "\nPila 2: \n";
-            pilaDoubles2.Imprimir();
-        }
-        cout << "\n/******** PILAS DE VECTORES ******/\n";
-        Pila<Vector> PilaVector;
-        char respuesta3;
-        int tam;
-
-
-        do {
-            cout << "Tamaño del vector:";
-            cin >> tam;
-            Vector v(tam);
-            cout << "\nCapturando componentes vector: \n";
-            cin >> v;
-
-            PilaVector.Agregar(v);
-
-            cout << "Elemento agregado. Ahora la pila tiene " << PilaVector.ObtenerTamano() << " elemento(s) y una capacidad de " << miPila.ObtenerCap() << "\n";
-            PilaVector.Imprimir();
-            cout << endl << endl;
-
-            do {
-                cout << "Quiere agregar otro vector? (s/n): ";
-                cin >> respuesta3;
-                respuesta3 = tolower(respuesta3);
-            } while (respuesta3 != 's' && respuesta3 != 'n');
-        } while (respuesta3 == 's');
-
-        do{
-            cout << "Quiere vaciar la pila? (s/n): ";
-            cin >> respuesta3;
-            respuesta3 = tolower(respuesta3);
-        }while(respuesta3 != 's' && respuesta3 != 'n');
-
-        if(respuesta3 == 's') {
-                pilaDoubles.Vaciar();
-                cout << "Pila vaciada con exito.\n\n";
-        }
-
-        if(!pilaDoubles.EstaVacia()){
-
-        cout << "Eliminando elementos" << endl;
-        do {
-            cout << "Elemento a eliminar: " << PilaVector.ObtenerTope() << endl;
-            PilaVector.Eliminar();
-
-            cout << "\nElemento eliminado. Ahora la pila tiene " << PilaVector.ObtenerTamano() << " elemento(s) y una capacidad de " << miPila.ObtenerCap() << "\n";
-            PilaVector.Imprimir();
-            cout << endl << endl;
-
-            do {
-                cout << "Quiere eliminar otro vector? (s/n): ";
-                cin >> respuesta3;
-                respuesta3 = tolower(respuesta3);
-            } while (respuesta3 != 's' && respuesta3 != 'n');
-        } while (respuesta3 == 's');
-        }
-
-        do{
-           cout << "Quiere hacer una copia de esta pila de Vector? ";
-            cin >> respuesta3;
-            respuesta3 = tolower(respuesta3);
-        }while(respuesta3 != 's' && respuesta3 != 'n');
-
-        if(respuesta3 == 's'){
-            Pila<Vector> pilaVector2;
-            cout << "Pila 1: \n";
-            PilaVector.Imprimir();
-            pilaVector2 = PilaVector;
-            cout << "\nPila 2: \n";
-            pilaVector2.Imprimir();
-        }
-    }catch(const char *msn){
-        cerr << "Error: " << msn << endl;
+    }catch (const char* error) {
+        cerr << "\nError: " << error << endl;
+    } catch (...) {
+        cerr << "\nError desconocido" << endl;
     }
-
-
     return 0;
-
 }
