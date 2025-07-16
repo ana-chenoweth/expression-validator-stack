@@ -2,6 +2,15 @@
 #define EXPRESION_HPP_INCLUDED
 #include <iostream>
 
+enum Operadores {
+    SUMA = 1,
+    RESTA = 1,
+    MULTIPLICACION = 2,
+    DIVISION = 2,
+    EXPONENTE = 3,
+    PARENTESIS_ABIERTO = 4
+};
+
 class Expresion{
 public:
     Expresion();

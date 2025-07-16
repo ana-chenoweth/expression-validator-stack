@@ -3,14 +3,6 @@
 #include <math.h>
 #include <string>
 
-enum Operadores {
-    SUMA = 1,
-    RESTA = 1,
-    MULTIPLICACION = 2,
-    DIVISION = 2,
-    EXPONENTE = 3,
-    PARENTESIS_ABIERTO = 4
-};
 
 Expresion::Expresion(): expInfija(""), expPosfija(""), esValida(false)
 {
@@ -34,4 +26,52 @@ bool Expresion::EsAbierto(const char caracter){
 //****************************************************************************************************
 bool Expresion::EsCerrado(const char caracter){
     return caracter == ']' || caracter == '}' || caracter == ')';
+}
+//****************************************************************************************************
+bool Expresion::EsPrecedente(const char caracter1, const char caracter2)
+{
+    int num1, num2;
+    switch(caracter1)
+        {
+            case '+':
+                num1 = SUMA;
+                break;
+            case '-':
+                num1 = RESTA;
+                break;
+            case '*':
+                num1 = MULTIPLICACION;
+                break;
+            case '/':
+                num1 = DIVISION;
+                break;
+            case '^':
+                num1 = EXPONENTE;
+                break;
+            default:
+                num1 = PARENTESIS_ABIERTO;
+                break;
+        }
+        switch(caracter2)
+        {
+            case '+':
+                num2 = SUMA;
+                break;
+            case '-':
+                num2 = RESTA;
+                break;
+            case '*':
+                num2 = MULTIPLICACION;
+                break;
+            case '/':
+                num2 = DIVISION;
+                break;
+            case '^':
+                num2 = EXPONENTE;
+                break;
+            default:
+                num1 = PARENTESIS_ABIERTO;
+                break;
+        }
+    return num1>num2;
 }
