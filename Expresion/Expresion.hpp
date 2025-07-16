@@ -20,6 +20,7 @@ private:
     std::string expInfija;
     std::string expPosfija;
     bool esValida;
+    void ConvertirPosfija();
 
     bool EsNumero(const char caracter);
     std::string SubCadenaNum(const std::string &cadena, int &i);

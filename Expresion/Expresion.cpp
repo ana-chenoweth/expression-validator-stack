@@ -180,6 +180,51 @@ std::string Expresion::SubCadenaNum(const std::string &cadena, int &i){
     else throw "Ocurrio un error al extraer la subcadena";
 
 }
+//***********************************************************************************************
+void Expresion::ConvertirPosfija()
+{
+    Pila<char> miPila;
+    std::string expresion = expInfija;
+    if(!esValida) throw "La expresion no es valida";
+
+  for (int i = 0; i < (int)expInfija.size(); ++i) {
+        char caracter = expInfija[i];
+        // Si el caracter es un operador binario, par�ntesis de apertura o cierre
+        if (EsOperadorBinario(caracter) || EsAbierto(caracter) || EsCerrado(caracter)) {
+            if (EsCerrado(caracter)) {
+                // Si es un par�ntesis de cierre, desapilar hasta encontrar el par�ntesis de apertura correspondiente
+                while (!miPila.EstaVacia() && miPila.ObtenerTope() != '(' && miPila.ObtenerTope() != '[' && miPila.ObtenerTope() != '{') {
+                    expPosfija += miPila.ObtenerTope();
+                    miPila.Eliminar();
+                }
+                if (!miPila.EstaVacia()) miPila.Eliminar(); // Eliminar el par�ntesis de apertura correspondiente
+            } else {
+                // Si no es un par�ntesis de cierre, manejar la precedencia de operadores
+                while (!miPila.EstaVacia() && miPila.ObtenerTope() != '(' && miPila.ObtenerTope() != '[' && miPila.ObtenerTope() != '{' && !EsPrecedente(caracter, miPila.ObtenerTope())) {
+                    expPosfija += miPila.ObtenerTope();
+                    miPila.Eliminar();
+                }
+                miPila.Agregar(caracter); // Agregar el operador actual a la pila
+            }
+        } else if (EsNumero(caracter) || caracter == '.') {
+            // Si es un n�mero, agregarlo directamente a la expresi�n posfija
+            if (expPosfija != "") {
+                    if(EsNumero(expPosfija[expPosfija.size()-1])) expPosfija += ';';
+            }
+            expPosfija += SubCadenaNum(expInfija, i);
+        } else {
+            throw "Car�cter no v�lido al convertir a posfija";
+            esValida = false;
+        }
+    }
+
+    // Desapilar los operadores restantes
+    while (!miPila.EstaVacia()) {
+        expPosfija += miPila.ObtenerTope();
+        miPila.Eliminar();
+    }
+
+}
 //****************************************************************************************************
 bool Expresion::EsPrecedente(const char caracter1, const char caracter2)
 {
