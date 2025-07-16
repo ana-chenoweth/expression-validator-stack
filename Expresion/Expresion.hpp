@@ -19,6 +19,7 @@ public:
     void Capturar();
     void ImprimirInfija();
     void ImprimirPosfija();
+    double EvaluarExpPosfija();
 
 private:
     std::string expInfija;

@@ -32,6 +32,63 @@ void Expresion::ImprimirPosfija()
 {
     std::cout << expPosfija;
 }
+//****************************************************************
+double Expresion::EvaluarExpPosfija(){
+    std::string expresion = expPosfija;
+    if(!esValida) throw "La expresion no es valida";
+    if(expPosfija=="") throw "No se ha capturado correctamente la expresion";
+    Pila<double> miPila;
+
+    for(int i = 0 ; i < (int)expresion.size() ; ++i){
+        if(EsNumero(expresion[i]) || expresion[i] == '.') miPila.Agregar(stod(SubCadenaNum(expresion,i)));
+        else if(EsOperadorBinario(expresion[i]))
+        {
+            if (miPila.ObtenerTamano() < 2 )
+                {
+                    if((expresion[i]!='+' || expresion[i]!='-' )&& !EsNumero(expresion[i-1])) throw "No hay suficientes operandos para la operacion.\n";
+                }
+
+                double y = miPila.ObtenerTope();
+                miPila.Eliminar();
+                double x = 0;
+                if(!((expresion[i]=='+' || expresion[i]=='-')&&(miPila.EstaVacia())))
+                {
+                    x = miPila.ObtenerTope();
+                    miPila.Eliminar();
+                }
+
+                switch(expresion[i])
+                {
+                    case '+':
+                        miPila.Agregar(x + y);
+                        break;
+                    case '-':
+                        miPila.Agregar(x - y);
+                        break;
+                    case '*':
+                        miPila.Agregar(x * y);
+                        break;
+                    case '/':
+                       miPila.Agregar(y == 0 ? throw "No es posible dividir entre 0" : x / y);
+                        break;
+                   case '^':
+                       double c = y - static_cast<int>(y);
+                        if (x < 0 && (fmod(c, 2.0) != 0)) {
+                            throw "No es posible realizar ra\241ces pares de n\243meros negativos";
+                        } else {
+                            miPila.Agregar(pow(x, y));
+                        }
+                    break;
+                }
+        }
+        else if(expresion[i]!=';'){
+                esValida = false;
+            throw " Expresi\242n mal escrita en posfija";
+
+        }
+    }
+    return miPila.ObtenerTope();
+}
 //*******************************************************************************
 bool Expresion::EsCadenaValida()
 {
