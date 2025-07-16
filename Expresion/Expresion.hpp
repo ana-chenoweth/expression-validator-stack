@@ -20,8 +20,11 @@ private:
     std::string expInfija;
     std::string expPosfija;
     bool esValida;
+
     bool EsNumero(const char caracter);
+    std::string SubCadenaNum(const std::string &cadena, int &i);
     bool EsOperadorBinario(const char caracter);
+    
     bool EsAbierto(const char caracter);
     bool EsCerrado(const char caracter);
     bool EsPrecedente(const char caracter1, const char caracter2);

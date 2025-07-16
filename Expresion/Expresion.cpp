@@ -76,6 +76,110 @@ bool Expresion::EsAbierto(const char caracter){
 bool Expresion::EsCerrado(const char caracter){
     return caracter == ']' || caracter == '}' || caracter == ')';
 }
+//**************************************************************************************************
+std::string Expresion::SubCadenaNum(const std::string &cadena, int &i){
+
+    int indInicial = i;
+
+    int estado = 0;
+
+    bool seTerminoElNum = false;
+
+    while(!seTerminoElNum){
+
+        switch(estado){
+
+            //No se ha leido nada
+
+            case 0:
+
+                if(cadena[i] == '.') estado = 2;
+
+                else if(EsNumero(cadena[i])) estado = 1;
+
+                else seTerminoElNum = true;
+
+                break;
+
+            //Se leyo un numero antes del punto
+
+            case 1:
+
+                if(cadena[i] == '.') estado = 2;
+
+                else if(cadena[i] == 'e' || cadena[i] == 'E') estado = 4;
+
+                else if(!EsNumero(cadena[i])) seTerminoElNum = true;
+
+                break;
+
+            //Se leyo un punto
+
+            case 2:
+
+                if(EsNumero(cadena[i])) estado = 3;
+
+                else esValida = false;
+
+                break;
+
+            //Se leyo un numero despues del punto
+
+            case 3:
+
+                if(cadena[i] == 'e' || cadena[i] == 'E') estado = 4;
+
+                else if(!EsNumero(cadena[i])) seTerminoElNum = true;
+
+                break;
+
+            //Se leyo una 'e' o 'E'
+
+            case 4:
+
+                if(cadena[i] == '+' || cadena[i] == '-') estado = 5;
+
+                else seTerminoElNum = true;
+
+                break;
+
+            //Se leyo un '+' o '-' despues de una 'e' o 'E'
+
+            case 5:
+
+                if(EsNumero(cadena[i])) estado = 6;
+
+                else seTerminoElNum = true;
+
+                break;
+
+            //algo
+
+            case 6:
+
+                if(!EsNumero(cadena[i])) seTerminoElNum = true;
+
+                break;
+
+        }
+
+        i++;
+
+    }
+
+    i -= 2;
+
+    if(estado == 1 || estado == 3 || estado == 6) {
+
+        std::string cadenaRetorno = cadena.substr(indInicial,i-indInicial+1);
+
+        return cadenaRetorno;
+
+    }
+
+    else throw "Ocurrio un error al extraer la subcadena";
+
+}
 //****************************************************************************************************
 bool Expresion::EsPrecedente(const char caracter1, const char caracter2)
 {
