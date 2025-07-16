@@ -2,10 +2,59 @@
 #include <iostream>
 #include <math.h>
 #include <string>
-
+#include "../Pila/Pila.hpp"
 
 Expresion::Expresion(): expInfija(""), expPosfija(""), esValida(false)
 {
+
+}
+//*******************************************************************************
+bool Expresion::EsCadenaValida()
+{
+
+    Pila<char> pila;
+    std::string cadena = expInfija;
+    bool estamal = false;
+
+    for(int i = 0; i<(int)expInfija.size(); i++){
+        if(EsOperadorBinario(cadena[i]) || cadena[i] == '.' || cadena[i] == 'E'|| EsNumero(cadena[i])) continue;
+        else if(EsAbierto(cadena[i])|| EsCerrado(cadena[i])){
+            if(EsAbierto(cadena[i])){
+                pila.Agregar(cadena[i]);
+            }
+            if(cadena[i] == ')' ){
+                if(!pila.EstaVacia()){
+                    if(pila.ObtenerTope()=='(') pila.Eliminar();
+                    else estamal = true;
+                }
+            }
+            if(cadena[i] == '}'){
+                if(!pila.EstaVacia()){
+                    if(pila.ObtenerTope()=='{') pila.Eliminar();
+                    else estamal = true;
+                }
+            }
+            if(cadena[i] == ']'){
+                if(!pila.EstaVacia()){
+                    if(pila.ObtenerTope()=='[') pila.Eliminar();
+                    else estamal = true;
+                }
+            }
+        }else{
+            esValida = false;
+            return false;
+            }
+        }
+
+
+    if(pila.EstaVacia() && !estamal ){
+        esValida = true;
+        return true;
+    }
+    else{
+        esValida = false;
+        return false;
+    }
 
 }
 //*****************************************************************************************

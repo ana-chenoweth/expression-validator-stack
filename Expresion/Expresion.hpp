@@ -14,6 +14,7 @@ enum Operadores {
 class Expresion{
 public:
     Expresion();
+    bool EsCadenaValida();
 
 private:
     std::string expInfija;
