@@ -18,6 +18,7 @@ public:
     Expresion(std::string expInfija);
     void Capturar();
     void ImprimirInfija();
+    void ImprimirPosfija();
 
 private:
     std::string expInfija;

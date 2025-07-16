@@ -27,6 +27,11 @@ void Expresion::ImprimirInfija()
 {
     std::cout << expInfija;
 }
+//****************************************************************
+void Expresion::ImprimirPosfija()
+{
+    std::cout << expPosfija;
+}
 //*******************************************************************************
 bool Expresion::EsCadenaValida()
 {
