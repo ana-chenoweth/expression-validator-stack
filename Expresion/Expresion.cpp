@@ -8,6 +8,13 @@ Expresion::Expresion(): expInfija(""), expPosfija(""), esValida(false)
 {
 
 }
+//******************************************************************
+Expresion::Expresion(std::string expInfija)
+{
+    this->expInfija = expInfija;
+    esValida = EsCadenaValida();
+    ConvertirPosfija();
+}
 //*******************************************************************************
 bool Expresion::EsCadenaValida()
 {

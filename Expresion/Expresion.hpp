@@ -15,6 +15,7 @@ class Expresion{
 public:
     Expresion();
     bool EsCadenaValida();
+    Expresion(std::string expInfija);
 
 private:
     std::string expInfija;
