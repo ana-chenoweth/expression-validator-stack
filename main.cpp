@@ -1,25 +1,25 @@
 #include <iostream>
-#include "Expresion.hpp"
+#include "Expresion/Expresion.hpp"
 using namespace std;
 
 int main()
 {
     try{
 
-    cout << "Clase Expresi\242n..." << endl;
+    cout << "Clase Expresión..." << endl;
     Expresion exp("{[(5+7)*6+4]/[(2-3)/4]}^2");
     double num = exp.EvaluarExpPosfija();
-    cout << "\nResultado de la expresi\242n: " << num << endl;
+    cout << "\nResultado de la expresión: " << num << endl;
     cout << "Expresion infija: ";
     exp.ImprimirInfija();
     cout << endl << "Expresion posfija: ";
     exp.ImprimirPosfija();
 
-    cout << endl << endl << "Tambi\202n puedes ingresar una expresi\242n: ";
+    cout << endl << endl << "Tambi\202n puedes ingresar una expresión: ";
     Expresion exp2;
     exp2.Capturar();
     double num2 = exp2.EvaluarExpPosfija();
-    cout << "\nResultado de la expresi\242n: " << num2 << endl;
+    cout << "\nResultado de la expresión: " << num2 << endl;
     cout << "Expresion infija: ";
     exp2.ImprimirInfija();
     cout << endl << "Expresion posfija: ";
