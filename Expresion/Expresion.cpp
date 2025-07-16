@@ -15,6 +15,13 @@ Expresion::Expresion(std::string expInfija)
     esValida = EsCadenaValida();
     ConvertirPosfija();
 }
+//*****************************************************************
+void Expresion::Capturar()
+{
+    std::cin >> expInfija;
+    esValida = EsCadenaValida();
+    ConvertirPosfija();
+}
 //*******************************************************************************
 bool Expresion::EsCadenaValida()
 {
