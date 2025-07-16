@@ -270,17 +270,17 @@ void Expresion::ConvertirPosfija()
 
   for (int i = 0; i < (int)expInfija.size(); ++i) {
         char caracter = expInfija[i];
-        // Si el caracter es un operador binario, par�ntesis de apertura o cierre
+        // Si el caracter es un operador binario, paréntesis de apertura o cierre
         if (EsOperadorBinario(caracter) || EsAbierto(caracter) || EsCerrado(caracter)) {
             if (EsCerrado(caracter)) {
-                // Si es un par�ntesis de cierre, desapilar hasta encontrar el par�ntesis de apertura correspondiente
+                // Si es un paréntesis de cierre, desapilar hasta encontrar el paréntesis de apertura correspondiente
                 while (!miPila.EstaVacia() && miPila.ObtenerTope() != '(' && miPila.ObtenerTope() != '[' && miPila.ObtenerTope() != '{') {
                     expPosfija += miPila.ObtenerTope();
                     miPila.Eliminar();
                 }
-                if (!miPila.EstaVacia()) miPila.Eliminar(); // Eliminar el par�ntesis de apertura correspondiente
+                if (!miPila.EstaVacia()) miPila.Eliminar(); // Eliminar el paréntesis de apertura correspondiente
             } else {
-                // Si no es un par�ntesis de cierre, manejar la precedencia de operadores
+                // Si no es un paréntesis de cierre, manejar la precedencia de operadores
                 while (!miPila.EstaVacia() && miPila.ObtenerTope() != '(' && miPila.ObtenerTope() != '[' && miPila.ObtenerTope() != '{' && !EsPrecedente(caracter, miPila.ObtenerTope())) {
                     expPosfija += miPila.ObtenerTope();
                     miPila.Eliminar();
@@ -288,13 +288,13 @@ void Expresion::ConvertirPosfija()
                 miPila.Agregar(caracter); // Agregar el operador actual a la pila
             }
         } else if (EsNumero(caracter) || caracter == '.') {
-            // Si es un n�mero, agregarlo directamente a la expresi�n posfija
+            // Si es un número, agregarlo directamente a la expresión posfija
             if (expPosfija != "") {
                     if(EsNumero(expPosfija[expPosfija.size()-1])) expPosfija += ';';
             }
             expPosfija += SubCadenaNum(expInfija, i);
         } else {
-            throw "Car�cter no v�lido al convertir a posfija";
+            throw "Carácter no válido al convertir a posfija";
             esValida = false;
         }
     }
