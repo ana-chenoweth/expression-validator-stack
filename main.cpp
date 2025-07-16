@@ -15,7 +15,7 @@ int main()
     cout << endl << "Expresion posfija: ";
     exp.ImprimirPosfija();
 
-    cout << endl << endl << "Tambi\202n puedes ingresar una expresión: ";
+    cout << endl << endl << "También puedes ingresar una expresión: ";
     Expresion exp2;
     exp2.Capturar();
     double num2 = exp2.EvaluarExpPosfija();
