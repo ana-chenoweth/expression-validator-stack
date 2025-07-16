@@ -22,6 +22,11 @@ void Expresion::Capturar()
     esValida = EsCadenaValida();
     ConvertirPosfija();
 }
+//*****************************************************************
+void Expresion::ImprimirInfija()
+{
+    std::cout << expInfija;
+}
 //*******************************************************************************
 bool Expresion::EsCadenaValida()
 {

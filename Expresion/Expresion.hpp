@@ -17,6 +17,7 @@ public:
     bool EsCadenaValida();
     Expresion(std::string expInfija);
     void Capturar();
+    void ImprimirInfija();
 
 private:
     std::string expInfija;
