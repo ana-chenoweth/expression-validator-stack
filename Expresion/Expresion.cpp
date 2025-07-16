@@ -226,12 +226,15 @@ std::string Expresion::SubCadenaNum(const std::string &cadena, int &i){
             //Se leyo una 'e' o 'E'
 
             case 4:
-
-                if(cadena[i] == '+' || cadena[i] == '-') estado = 5;
-
-                else seTerminoElNum = true;
-
+                if (EsNumero(cadena[i])) {
+                    estado = 6;  // número sin signo
+                } else if (cadena[i] == '+' || cadena[i] == '-') {
+                    estado = 5;  // número con signo
+                } else {
+                    seTerminoElNum = true; // e no seguida de número válido
+                }
                 break;
+
 
             //Se leyo un '+' o '-' despues de una 'e' o 'E'
 
