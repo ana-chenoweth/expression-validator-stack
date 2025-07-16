@@ -12,6 +12,8 @@ private:
     bool esValida;
     bool EsNumero(const char caracter);
     bool EsOperadorBinario(const char caracter);
+    bool EsAbierto(const char caracter);
+    bool EsCerrado(const char caracter);
 
 };
 #endif // EXPRESION_HPP_INCLUDED

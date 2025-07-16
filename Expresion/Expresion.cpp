@@ -18,3 +18,11 @@ bool Expresion::EsOperadorBinario(const char caracter)
 {
     return caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '^';
 }
+//****************************************************************************************************
+bool Expresion::EsAbierto(const char caracter){
+    return caracter == '[' || caracter == '{' || caracter == '(';
+}
+//****************************************************************************************************
+bool Expresion::EsCerrado(const char caracter){
+    return caracter == ']' || caracter == '}' || caracter == ')';
+}
