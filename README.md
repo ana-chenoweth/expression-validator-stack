@@ -11,7 +11,7 @@ This is an academic C++ project that validates and evaluates mathematical expres
   </tr>
 </table>
 
-## Manejo de Errores
+## Error management
 <table>
   <tr>
     <td> <h4>Case: Invalid caracter</h4>
