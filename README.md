@@ -4,16 +4,26 @@ This is an academic C++ project that validates and evaluates mathematical expres
 
 <table>
   <tr>
-    <td><img src="img/example-use.gif" alt="Example of use" width="400"></td>
-    <td><img src="img/scientific-notation.png" alt="Case: Scientific notation" width="400"></td> 
+    <td> <h4>Example of use</h4>
+    <img src="img/example-use.gif" alt="Example of use" width="400"></td>
+    <td><h4>Also works with scientific notation</h4>
+    <img src="img/scientific-notation.png" alt="Case: Scientific notation" width="400"></td> 
+  </tr>
+</table>
+
+## Manejo de Errores
+<table>
+  <tr>
+    <td> <h4>Case: Invalid caracter</h4>
+    <img src="img/caracter.png" alt="Case: Invalid caracter" width="400"></td>
+    <td> <h4>Case: Division 0</h4>
+    <img src="img/div0.png" alt="Case: Division 0" width="400"></td> 
   </tr>
   <tr>
-    <td><img src="img/caracter.png" alt="Case: Invalid caracter" width="400"></td>
-    <td><img src="img/div0.png" alt="Case: Division 0" width="400"></td> 
-  </tr>
-  <tr>
-    <td><img src="img/left.png" alt="Case: Missing left" width="400"></td>
-    <td><img src="img/right.png" alt="Case: Missing right" width="400"></td> 
+    <td> <h4>Case: Missing left</h4>
+    <img src="img/left.png" alt="Case: Missing left" width="400"></td>
+    <td> <h4>Case: Missing right</h4>
+    <img src="img/right.png" alt="Case: Missing right" width="400"></td> 
   </tr>
 </table>
 
